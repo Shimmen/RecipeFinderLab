@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipefinder.SearchViewController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="310.0" prefWidth="345.0">
+         <children>
+            <GridPane layoutY="71.0" prefHeight="185.0" prefWidth="306.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="211.0" prefWidth="211.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label layoutX="10.0" layoutY="70.0" text="Kök" />
+                  <ChoiceBox fx:id="cuisineChoiceBox" prefHeight="26.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                  <Label text="Huvudingrediens" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="mainIngredientChoiceBox" layoutX="240.0" layoutY="20.0" prefHeight="26.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label layoutX="10.0" layoutY="70.0" text="Svårighetsgrad" GridPane.rowIndex="2" />
+                  <ChoiceBox fx:id="difficultyChoiceBox" layoutX="10.0" layoutY="20.0" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label layoutX="10.0" layoutY="115.0" text="Maxpris" GridPane.rowIndex="3" />
+                  <TextField fx:id="maxPriceTextField" alignment="CENTER_RIGHT" onKeyTyped="#onMaxPriceKeyTyped" promptText="Alla priser" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label layoutX="10.0" layoutY="160.0" text="Maxtid" GridPane.rowIndex="4" />
+                  <Slider fx:id="maxTimeSlider" majorTickUnit="30.0" max="160.0" min="10.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <Label text="Hitta recept" textFill="#282828">
+               <font>
+                  <Font name="Trebuchet MS" size="50.0" />
+               </font>
+            </Label>
+            <Separator layoutY="61.0" prefHeight="3.0" prefWidth="341.0" translateZ="100.0" />
+            <Button layoutX="141.0" layoutY="271.0" mnemonicParsing="false" onAction="#searchButtonWasPressed" text="Sök">
+               <font>
+                  <Font name="Trebuchet MS" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</GridPane>
