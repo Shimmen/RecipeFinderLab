@@ -25,7 +25,10 @@ public class ResultViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // ...
+        resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
+            // Set recipe detail view properties
+            // TODO!
+        });
     }
 
     public void setRecipes(List<Recipe> recipes, boolean includeAll) {
@@ -34,6 +37,7 @@ public class ResultViewController implements Initializable {
                 .collect(Collectors.toList());
 
         resultList.setItems(FXCollections.observableArrayList(this.recipes));
+        resultList.getSelectionModel().selectFirst();
         resultList.setCellFactory(RecipeCell::new);
     }
 

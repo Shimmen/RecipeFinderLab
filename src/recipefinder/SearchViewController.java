@@ -105,7 +105,7 @@ public class SearchViewController implements Initializable {
         }
 
         // Switch view
-        maxTimeSlider.getScene().setRoot(this.resultView);
+        this.searchView.getScene().setRoot(this.resultView);
 
         // Pass result to result view controller
         resultViewController.setRecipes(searchResult,
