@@ -60,8 +60,10 @@ public class SearchViewController implements Initializable {
             maxTimeSlider.setLabelFormatter(new StringConverter<Double>() {
                 @Override
                 public String toString(Double object) {
-                    if (object == 160) {
-                        return "Alla tider";
+                    if (object > 155.0) {
+                        // NOTE(simon): doesn't work on my desktop computer, it's too wide.
+                        //return "Alla tider";
+                        return "Alla";
                     } else {
                         return String.valueOf(object.intValue());
                     }
@@ -79,6 +81,10 @@ public class SearchViewController implements Initializable {
 
     @FXML
     public void searchButtonWasPressed() throws IOException {
+        performSearch();
+    }
+
+    private void performSearch() throws IOException {
 
         boolean isNotDifficultyChoiceBox = difficultyChoiceBox.getValue().equals("Alla svårighetsgrader");
         boolean isNotMaxTimeSlider = maxTimeSlider.getValue() == 160.0;
@@ -115,7 +121,11 @@ public class SearchViewController implements Initializable {
 
     @FXML
     public void onMaxPriceKeyTyped(KeyEvent event) {
-        // TODO!!!
+        // Consume non-numeric characters
+        String typedCharacter = event.getCharacter();
+        if (!typedCharacter.matches("[0-9]")) {
+            event.consume();
+        }
     }
 
     public void setSearchView(Parent searchView) {

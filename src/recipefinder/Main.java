@@ -12,8 +12,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         primaryStage.setTitle("Studentrecept");
-        primaryStage.setMinWidth(400.0);
-        primaryStage.setMinHeight(380.0);
+        primaryStage.setMinWidth(500.0);
+        primaryStage.setMinHeight(450.0);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchView.fxml"));
         Parent searchView = loader.load();

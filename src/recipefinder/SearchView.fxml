@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipefinder.SearchViewController">
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipefinder.SearchViewController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -33,9 +36,9 @@
                   <Label layoutX="10.0" layoutY="70.0" prefHeight="16.0" prefWidth="161.0" text="Svårighetsgrad" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="difficultyChoiceBox" layoutX="10.0" layoutY="20.0" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label layoutX="10.0" layoutY="115.0" prefHeight="16.0" prefWidth="205.0" text="Maxpris" GridPane.rowIndex="3" />
-                  <TextField fx:id="maxPriceTextField" alignment="CENTER_RIGHT" onKeyTyped="#onMaxPriceKeyTyped" promptText="Alla priser" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="maxPriceTextField" alignment="CENTER_RIGHT" onAction="#searchButtonWasPressed" onKeyTyped="#onMaxPriceKeyTyped" promptText="Alla priser" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label layoutX="10.0" layoutY="160.0" prefHeight="16.0" prefWidth="177.0" text="Maxtid" GridPane.rowIndex="4" />
-                  <Slider fx:id="maxTimeSlider" majorTickUnit="30.0" max="160.0" min="10.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Slider fx:id="maxTimeSlider" majorTickUnit="30.0" max="160.0" min="10.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <Label text="Hitta recept" textFill="#282828">
