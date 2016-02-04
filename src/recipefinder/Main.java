@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        primaryStage.setTitle("Student Recipe");
+        primaryStage.setTitle("Studentrecept");
         primaryStage.setMinWidth(400.0);
         primaryStage.setMinHeight(380.0);
 
