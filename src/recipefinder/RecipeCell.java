@@ -19,8 +19,6 @@ public class RecipeCell extends ListCell<Recipe>{
     private static final Circle cropCircle = new Circle(IMAGE_SIZE / 2.0);
     private static final SnapshotParameters parameters = new SnapshotParameters();
 
-    private static final Font titleFont = new Font("Trebuchet MS", 14);
-
     static {
         parameters.setFill(Color.TRANSPARENT);
     }
@@ -41,7 +39,6 @@ public class RecipeCell extends ListCell<Recipe>{
         } else {
 
             setText(item.getName());
-            setFont(titleFont);
 
             // Scale image to be at least 100x100
             double width = item.getImage().getIconWidth();

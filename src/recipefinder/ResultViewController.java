@@ -1,6 +1,6 @@
 package recipefinder;
 
-import com.sun.javafx.tk.FontMetrics;
+import javafx.beans.binding.DoubleBinding;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,10 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import se.chalmers.ait.dat215.lab2.Ingredient;
 import se.chalmers.ait.dat215.lab2.Recipe;
 
@@ -32,9 +30,8 @@ public class ResultViewController implements Initializable {
     @FXML private ListView<Recipe> resultList;
 
     // Recipe detail
-    @FXML private ScrollPane recipeScrollView;
-    @FXML private AnchorPane scrollContentView;
-    @FXML private VBox recipeContainer;
+    @FXML private ScrollPane recipeScrollPane;
+    @FXML private VBox scrollContent;
 
     @FXML private Label recipeName;
     @FXML private Text description;
@@ -42,31 +39,53 @@ public class ResultViewController implements Initializable {
     @FXML private Text ingredients;
     @FXML private Text instructions;
 
+    // Layout constants
+    private final static double DEFAULT_INSET = 14.0;
+    private final static double SCROLL_BAR_WIDTH = 12.0;
+    private final static double COMBINED_INSET = DEFAULT_INSET * 2.0 + SCROLL_BAR_WIDTH;
+    private final static double IMAGE_MAX_WIDTH = 640.0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        scrollContentView.prefWidthProperty().bind(recipeScrollView.widthProperty());
-        recipeName.prefWidthProperty().bind(scrollContentView.widthProperty().subtract(14.0 * 2 + 10));
-        description.wrappingWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
-        image.fitWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
+        // Make sure scroll pane never needs to scroll horizontally
+        scrollContent.prefWidthProperty().bind(recipeScrollPane.widthProperty().subtract(DEFAULT_INSET * 2));
 
+        // Snap detail content to edges
+        DoubleBinding prefWidth = recipeScrollPane.widthProperty().subtract(COMBINED_INSET);
+        recipeName.prefWidthProperty().bind(prefWidth);
+        description.wrappingWidthProperty().bind(prefWidth);
+        ingredients.wrappingWidthProperty().bind(prefWidth);
+        instructions.wrappingWidthProperty().bind(prefWidth);
+
+        image.setPreserveRatio(true);
+        recipeScrollPane.widthProperty().addListener((observable, oldWidth, newWidth) -> {
+            double widthToUse = Math.min(newWidth.doubleValue() - COMBINED_INSET, 640.0);
+            image.setFitWidth(widthToUse);
+        });
+
+        // On new recipe selected
         resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
-
             if (selectedRecipe == null) {
                 return;
             }
+
+            // Scroll to top of detail view
+            recipeScrollPane.setVvalue(0.0);
 
             // Set recipe detail view properties
 
             recipeName.setText(selectedRecipe.getName());
             description.setText(selectedRecipe.getDescription());
+            image.setImage(selectedRecipe.getFXImage());
 
             String ingredientsString = selectedRecipe.getIngredients().stream()
                     .map(this::ingredientString)
-                    .reduce("", (s, s2) -> s + "\n" + s2);
+                    .reduce("", (s, s2) -> s.isEmpty() ? s2 : s + "\n" + s2);
             ingredients.setText(ingredientsString);
             ingredients.setY(description.getLayoutBounds().getHeight() + 14.0 + 130.0);
-            image.setImage(selectedRecipe.getFXImage());
+
+            instructions.setText(selectedRecipe.getInstruction());
         });
     }
 
