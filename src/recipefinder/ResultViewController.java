@@ -1,5 +1,6 @@
 package recipefinder;
 
+import com.sun.javafx.tk.FontMetrics;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,8 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import se.chalmers.ait.dat215.lab2.Ingredient;
 import se.chalmers.ait.dat215.lab2.Recipe;
 
@@ -30,15 +34,21 @@ public class ResultViewController implements Initializable {
     @FXML private ScrollPane recipeScrollView;
     @FXML private AnchorPane scrollContentView;
 
+    @FXML private VBox recipeContainer;
     @FXML private Label recipeName;
     @FXML private Text description;
+    @FXML private ImageView image;
     @FXML private Text ingredients;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         scrollContentView.prefWidthProperty().bind(recipeScrollView.widthProperty());
+        recipeName.prefWidthProperty().bind(scrollContentView.widthProperty().subtract(14.0 * 2 + 10));
         description.wrappingWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
+        image.fitWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
+
 
         resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
 
@@ -55,7 +65,8 @@ public class ResultViewController implements Initializable {
                     .map(this::ingredientString)
                     .reduce("", (s, s2) -> s + "\n" + s2);
             ingredients.setText(ingredientsString);
-
+            ingredients.setY(description.getLayoutBounds().getHeight() + 14.0 + 130.0);
+            image.setImage(selectedRecipe.getFXImage());
         });
     }
 
