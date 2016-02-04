@@ -29,7 +29,7 @@
                                  <children>
                                     <Label fx:id="recipeName" prefHeight="36.0" prefWidth="543.0" text="Recipe name">
                                        <font>
-                                          <Font name="Trebuchet MS Bold" size="30.0" />
+                                          <Font name="Trebuchet MS Bold" size="44.0" />
                                        </font>
                                     </Label>
                                     <Separator prefHeight="0.0" prefWidth="380.0" />
@@ -80,7 +80,8 @@
                                           <Image url="@icons/price.png" />
                                        </image>
                                     </ImageView>
-                                    <Text fx:id="ingredients" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, sit suavitate deterruisset ea, movet repudiandae ad has. Clita decore maiestatis ad vix, vix erant molestie signiferumque ne. Maiorum forensibus reprimique ne per, est id omnes percipitur." wrappingWidth="291.04296875" />
+                                    <Text fx:id="ingredients" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients" wrappingWidth="291.04296875" />
+                                    <Text fx:id="instructions" layoutX="10.0" layoutY="256.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions" wrappingWidth="291.04296875" />
                                  </children>
                               </VBox>
                            </children>

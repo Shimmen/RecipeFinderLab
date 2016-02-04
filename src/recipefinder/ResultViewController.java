@@ -26,20 +26,21 @@ import java.util.stream.Collectors;
 public class ResultViewController implements Initializable {
 
     private Parent searchView;
-    private List<Recipe> recipes;
 
+    // Recipe list
     @FXML private Button backButton;
     @FXML private ListView<Recipe> resultList;
 
+    // Recipe detail
     @FXML private ScrollPane recipeScrollView;
     @FXML private AnchorPane scrollContentView;
-
     @FXML private VBox recipeContainer;
+
     @FXML private Label recipeName;
     @FXML private Text description;
     @FXML private ImageView image;
     @FXML private Text ingredients;
-
+    @FXML private Text instructions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,7 +49,6 @@ public class ResultViewController implements Initializable {
         recipeName.prefWidthProperty().bind(scrollContentView.widthProperty().subtract(14.0 * 2 + 10));
         description.wrappingWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
         image.fitWidthProperty().bind(recipeScrollView.widthProperty().subtract(14.0 * 2 + 10.0));
-
 
         resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
 
@@ -75,11 +75,11 @@ public class ResultViewController implements Initializable {
     }
 
     public void setRecipes(List<Recipe> recipes, boolean includeAll) {
-        this.recipes = recipes.stream()
+        List<Recipe> filteredRecipes = recipes.stream()
                 .filter(recipe -> recipe.getMatch() == 100 || includeAll)
                 .collect(Collectors.toList());
 
-        resultList.setItems(FXCollections.observableArrayList(this.recipes));
+        resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
         resultList.getSelectionModel().selectFirst();
         resultList.setCellFactory(RecipeCell::new);
     }
