@@ -26,15 +26,15 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label layoutX="10.0" layoutY="70.0" text="Kök" />
+                  <Label layoutX="10.0" layoutY="70.0" prefHeight="16.0" prefWidth="173.0" text="Kök" />
                   <ChoiceBox fx:id="cuisineChoiceBox" prefHeight="26.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                  <Label text="Huvudingrediens" GridPane.rowIndex="1" />
+                  <Label prefHeight="16.0" prefWidth="162.0" text="Huvudingrediens" GridPane.rowIndex="1" />
                   <ChoiceBox fx:id="mainIngredientChoiceBox" layoutX="240.0" layoutY="20.0" prefHeight="26.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label layoutX="10.0" layoutY="70.0" text="Svårighetsgrad" GridPane.rowIndex="2" />
+                  <Label layoutX="10.0" layoutY="70.0" prefHeight="16.0" prefWidth="161.0" text="Svårighetsgrad" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="difficultyChoiceBox" layoutX="10.0" layoutY="20.0" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label layoutX="10.0" layoutY="115.0" text="Maxpris" GridPane.rowIndex="3" />
+                  <Label layoutX="10.0" layoutY="115.0" prefHeight="16.0" prefWidth="205.0" text="Maxpris" GridPane.rowIndex="3" />
                   <TextField fx:id="maxPriceTextField" alignment="CENTER_RIGHT" onKeyTyped="#onMaxPriceKeyTyped" promptText="Alla priser" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label layoutX="10.0" layoutY="160.0" text="Maxtid" GridPane.rowIndex="4" />
+                  <Label layoutX="10.0" layoutY="160.0" prefHeight="16.0" prefWidth="177.0" text="Maxtid" GridPane.rowIndex="4" />
                   <Slider fx:id="maxTimeSlider" majorTickUnit="30.0" max="160.0" min="10.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
