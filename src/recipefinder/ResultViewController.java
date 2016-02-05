@@ -1,5 +1,6 @@
 package recipefinder;
 
+import javafx.application.Platform;
 import javafx.beans.binding.DoubleBinding;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -124,9 +125,10 @@ public class ResultViewController implements Initializable {
                 .collect(Collectors.toList());
 
         resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
-        resultList.getSelectionModel().selectFirst();
-        onRecipeSelected(filteredRecipes.get(0));
         resultList.setCellFactory(RecipeCell::new);
+        Platform.runLater(() -> {
+            resultList.getSelectionModel().selectFirst();
+        });
     }
 
     @FXML
