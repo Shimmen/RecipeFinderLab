@@ -54,9 +54,9 @@
                                              </GridPane.margin>
                                           </ImageView>
                                           <Label fx:id="timeRequired" text="N minuter" textFill="#727272" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <ImageView fx:id="hardIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
-                                                <Image url="@icons/difficulty.png" />
+                                                <Image url="@icons/hard.png" />
                                              </image>
                                           </ImageView>
                                           <Label fx:id="difficulty" layoutX="25.0" layoutY="39.0" text="Svårt" textFill="#727272" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
@@ -72,6 +72,16 @@
                                              </image>
                                           </ImageView>
                                           <Label fx:id="servings" layoutX="202.0" layoutY="39.0" text="N portioner" textFill="#727272" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <ImageView fx:id="mediumIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@icons/medium.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="easyIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <image>
+                                                <Image url="@icons/easy.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </GridPane>
                                     <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="544.8549421209739" />

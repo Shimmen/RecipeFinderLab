@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -38,6 +39,9 @@ public class ResultViewController implements Initializable {
     @FXML private Separator separator;
     @FXML private GridPane iconsGrid;
     @FXML private Label timeRequired;
+    @FXML private ImageView hardIcon;
+    @FXML private ImageView mediumIcon;
+    @FXML private ImageView easyIcon;
     @FXML private Label difficulty;
     @FXML private Label price;
     @FXML private Label servings;
@@ -96,6 +100,7 @@ public class ResultViewController implements Initializable {
             timeText += minutes + " minut" + (minutes != 1 ? "er": "");
         }
         timeRequired.setText(timeText);
+        setDifficultyIcon(selectedRecipe.getDifficulty());
 
         difficulty.setText(selectedRecipe.getDifficulty());
         price.setText(String.valueOf(selectedRecipe.getPrice()) + " kr/portion");
@@ -129,6 +134,20 @@ public class ResultViewController implements Initializable {
         Platform.runLater(() -> {
             resultList.getSelectionModel().selectFirst();
         });
+    }
+
+    private void setDifficultyIcon(String difficulty) {
+        switch(difficulty) {
+            case "Lätt":
+                easyIcon.setVisible(true); mediumIcon.setVisible(false); hardIcon.setVisible(false);
+                break;
+            case "Mellan":
+                easyIcon.setVisible(false); mediumIcon.setVisible(true); hardIcon.setVisible(false);
+                break;
+            case "Svår":
+                easyIcon.setVisible(false); mediumIcon.setVisible(false); hardIcon.setVisible(true);
+                break;
+        }
     }
 
     @FXML
