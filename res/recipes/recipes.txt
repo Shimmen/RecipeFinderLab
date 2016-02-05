@@ -1,4 +1,4 @@
-#name
+﻿#name
 Laxpaket med fänkål och spenat
 #servings
 4
@@ -45,7 +45,7 @@ Häll upp gräddfilen i ett kaffefilter och låt den rinna av, gärna över natt
 #description
 Goda foliepaket fyllda med lax, spenat och brynt smör med fänkål. Serveras med potatis och avrunnen gräddfil.
 #name
-fransk-kött-och-grönsaksgryta
+Fransk kött- och grönsaksgryta
 #servings
 8
 #difficulty
@@ -57,7 +57,7 @@ Frankrike
 #price
 71
 #image
-fransk-kött-och-grönsaksgryta.jpg
+fransk-kott-och-gronsaksgryta.jpg
 #mainIngredient
 Kött
 #ingredients
@@ -408,7 +408,7 @@ Sverige
 #price
 2
 #image
-stekta-ägg.jpg
+stekta-agg.jpg
 #mainIngredient
 Kyckling
 #ingredients
