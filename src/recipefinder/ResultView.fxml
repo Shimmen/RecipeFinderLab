@@ -53,25 +53,25 @@
                                                 <Insets />
                                              </GridPane.margin>
                                           </ImageView>
-                                          <Label text="N minuter" textFill="#727272" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="timeRequired" text="N minuter" textFill="#727272" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@icons/difficulty.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="25.0" layoutY="39.0" text="Svårt" textFill="#727272" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="difficulty" layoutX="25.0" layoutY="39.0" text="Svårt" textFill="#727272" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@icons/price.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="106.0" layoutY="39.0" text="X kr/portion" textFill="#727272" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="price" layoutX="106.0" layoutY="39.0" text="X kr/portion" textFill="#727272" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <image>
                                                 <Image url="@icons/servings.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="202.0" layoutY="39.0" text="N portioner" textFill="#727272" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                          <Label fx:id="servings" layoutX="202.0" layoutY="39.0" text="N portioner" textFill="#727272" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                        </children>
                                     </GridPane>
                                     <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="544.8549421209739" />
@@ -84,7 +84,7 @@
                                     <Text fx:id="instructions" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions" wrappingWidth="678.04296875" />
                                  </children>
                                  <padding>
-                                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                                    <Insets bottom="28.0" left="14.0" right="14.0" top="28.0" />
                                  </padding>
                               </VBox>
                            </center>

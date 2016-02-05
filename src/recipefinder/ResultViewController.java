@@ -17,6 +17,7 @@ import se.chalmers.ait.dat215.lab2.Recipe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -37,6 +38,10 @@ public class ResultViewController implements Initializable {
     @FXML private Label recipeName;
     @FXML private Separator separator;
     @FXML private GridPane iconsGrid;
+    @FXML private Label timeRequired;
+    @FXML private Label difficulty;
+    @FXML private Label price;
+    @FXML private Label servings;
     @FXML private Text description;
     @FXML private ImageView image;
     @FXML private Text ingredients;
@@ -52,7 +57,7 @@ public class ResultViewController implements Initializable {
         scrollContent.prefWidthProperty().bind(recipeScrollPane.widthProperty().subtract(DEFAULT_INSET * 2));
 
         // Snap detail content to edges
-        ReadOnlyDoubleProperty prefWidth = detailContainer.widthProperty();
+        DoubleBinding prefWidth = detailContainer.widthProperty().subtract(DEFAULT_INSET * 2);
         recipeName.prefWidthProperty().bind(prefWidth);
         separator.prefWidthProperty().bind(prefWidth);
         iconsGrid.prefWidthProperty().bind(prefWidth);
@@ -73,6 +78,20 @@ public class ResultViewController implements Initializable {
             // Set recipe detail view properties
 
             recipeName.setText(selectedRecipe.getName());
+
+            int minutes = selectedRecipe.getTime() % 60;
+            int hours = selectedRecipe.getTime() / 60;
+            String timeText = "";
+            if (hours == 0) timeText = minutes + " minuter";
+            else timeText = hours + " timma" + (hours == 1 ? "" : "r") + " och " + minutes + " minuter";
+            timeRequired.setText(timeText);
+
+            difficulty.setText(selectedRecipe.getDifficulty());
+            price.setText(String.valueOf(selectedRecipe.getPrice()) + " kr/portion");
+
+            int numServings = selectedRecipe.getServings();
+            servings.setText(String.valueOf(numServings) + " portion" + (numServings == 1 ? "" : "er"));
+
             description.setText(selectedRecipe.getDescription());
             image.setImage(selectedRecipe.getFXImage());
 
