@@ -82,8 +82,15 @@ public class ResultViewController implements Initializable {
             int minutes = selectedRecipe.getTime() % 60;
             int hours = selectedRecipe.getTime() / 60;
             String timeText = "";
-            if (hours == 0) timeText = minutes + " minuter";
-            else timeText = hours + " timma" + (hours == 1 ? "" : "r") + " och " + minutes + " minuter";
+            if (hours != 0) {
+                timeText += hours + " timma" + (hours != 1 ? "r" : "");
+            }
+            if (minutes != 0) {
+                if (!timeText.isEmpty()) {
+                    timeText += " och ";
+                }
+                timeText += minutes + " minut" + (minutes != 1 ? "er": "");
+            }
             timeRequired.setText(timeText);
 
             difficulty.setText(selectedRecipe.getDifficulty());
