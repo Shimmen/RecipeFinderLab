@@ -56,6 +56,9 @@ public class ResultViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // Set cell factory
+        resultList.setCellFactory(RecipeCell::new);
+
         // Make sure scroll pane never needs to scroll horizontally
         scrollContent.prefWidthProperty().bind(recipeScrollPane.widthProperty().subtract(DEFAULT_INSET * 2));
 
@@ -135,12 +138,10 @@ public class ResultViewController implements Initializable {
                     new Recipe("Inga recept upyller sökningen!", 0, "", 0, "", 0, "", "", "",
                             null, "", new ArrayList<Ingredient>(){})
             ));
-            scrollContent.setVisible(false);
-            recipeScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            setDetailViewVisible(false);
         } else {
             resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
-            resultList.setCellFactory(RecipeCell::new);
-            recipeScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+            setDetailViewVisible(true);
         }
 
         // Run this later to assure that the scroll pane is ready for the content.
@@ -150,6 +151,11 @@ public class ResultViewController implements Initializable {
         Platform.runLater(() ->
             resultList.getSelectionModel().selectFirst()
         );
+    }
+
+    private void setDetailViewVisible(boolean flag) {
+        scrollContent.setVisible(flag);
+        recipeScrollPane.setVbarPolicy(flag ? ScrollPane.ScrollBarPolicy.AS_NEEDED : ScrollPane.ScrollBarPolicy.NEVER);
     }
 
     private void setDifficultyIcon(String difficulty) {
