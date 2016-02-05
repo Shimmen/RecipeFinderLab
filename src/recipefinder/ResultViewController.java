@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -18,6 +17,7 @@ import se.chalmers.ait.dat215.lab2.Recipe;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -129,12 +129,24 @@ public class ResultViewController implements Initializable {
                 .filter(recipe -> recipe.getMatch() == 100 || includeAll)
                 .collect(Collectors.toList());
 
-        resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
-        resultList.setCellFactory(RecipeCell::new);
+        if (filteredRecipes.size() <= 0) {
+            resultList.setItems(FXCollections.observableArrayList(
+                    // Phony recipe for displaying message in list
+                    new Recipe("Inga recept upyller sökningen!", 0, "", 0, "", 0, "", "", "",
+                            null, "", new ArrayList<Ingredient>(){})
+            ));
+            scrollContent.setVisible(false);
+            recipeScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        } else {
+            resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
+            resultList.setCellFactory(RecipeCell::new);
+            recipeScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        }
 
         // Run this later to assure that the scroll pane is ready for the content.
         // This fixes the bug where the scroll pane doesn't scroll properly and
         // its layout buggers up when the scroll pane changes size.
+        resultList.getSelectionModel().select(1);
         Platform.runLater(() ->
             resultList.getSelectionModel().selectFirst()
         );
