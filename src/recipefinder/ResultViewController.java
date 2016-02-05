@@ -131,9 +131,13 @@ public class ResultViewController implements Initializable {
 
         resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
         resultList.setCellFactory(RecipeCell::new);
-        Platform.runLater(() -> {
-            resultList.getSelectionModel().selectFirst();
-        });
+
+        // Run this later to assure that the scroll pane is ready for the content.
+        // This fixes the bug where the scroll pane doesn't scroll properly and
+        // its layout buggers up when the scroll pane changes size.
+        Platform.runLater(() ->
+            resultList.getSelectionModel().selectFirst()
+        );
     }
 
     private void setDifficultyIcon(String difficulty) {
