@@ -12,15 +12,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         primaryStage.setTitle("Studentrecept");
-        primaryStage.setMinWidth(500.0);
-        primaryStage.setMinHeight(450.0);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchView.fxml"));
         Parent searchView = loader.load();
         SearchViewController searchViewController = loader.<SearchViewController>getController();
         searchViewController.setSearchView(searchView);
 
-        Scene mainScene = new Scene(searchView, 900, 600);
+        int minWidth = 1200;
+        int minHeight = 600;
+        Scene mainScene = new Scene(searchView, minWidth, minHeight);
+        primaryStage.setMinWidth(minWidth);
+        primaryStage.setMinHeight(minHeight);
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }

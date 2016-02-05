@@ -1,15 +1,15 @@
 package recipefinder;
 
 import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.lab2.Ingredient;
@@ -31,9 +31,12 @@ public class ResultViewController implements Initializable {
 
     // Recipe detail
     @FXML private ScrollPane recipeScrollPane;
-    @FXML private VBox scrollContent;
+    @FXML private BorderPane scrollContent;
+    @FXML private VBox detailContainer;
 
     @FXML private Label recipeName;
+    @FXML private Separator separator;
+    @FXML private GridPane iconsGrid;
     @FXML private Text description;
     @FXML private ImageView image;
     @FXML private Text ingredients;
@@ -41,9 +44,6 @@ public class ResultViewController implements Initializable {
 
     // Layout constants
     private final static double DEFAULT_INSET = 14.0;
-    private final static double SCROLL_BAR_WIDTH = 12.0;
-    private final static double COMBINED_INSET = DEFAULT_INSET * 2.0 + SCROLL_BAR_WIDTH;
-    private final static double IMAGE_MAX_WIDTH = 640.0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,17 +52,14 @@ public class ResultViewController implements Initializable {
         scrollContent.prefWidthProperty().bind(recipeScrollPane.widthProperty().subtract(DEFAULT_INSET * 2));
 
         // Snap detail content to edges
-        DoubleBinding prefWidth = recipeScrollPane.widthProperty().subtract(COMBINED_INSET);
+        ReadOnlyDoubleProperty prefWidth = detailContainer.widthProperty();
         recipeName.prefWidthProperty().bind(prefWidth);
+        separator.prefWidthProperty().bind(prefWidth);
+        iconsGrid.prefWidthProperty().bind(prefWidth);
         description.wrappingWidthProperty().bind(prefWidth);
+        image.fitWidthProperty().bind(prefWidth);
         ingredients.wrappingWidthProperty().bind(prefWidth);
         instructions.wrappingWidthProperty().bind(prefWidth);
-
-        image.setPreserveRatio(true);
-        recipeScrollPane.widthProperty().addListener((observable, oldWidth, newWidth) -> {
-            double widthToUse = Math.min(newWidth.doubleValue() - COMBINED_INSET, 640.0);
-            image.setFitWidth(widthToUse);
-        });
 
         // On new recipe selected
         resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
