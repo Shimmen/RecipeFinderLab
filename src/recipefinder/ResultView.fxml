@@ -90,7 +90,17 @@
                                           <Image url="@icons/price.png" />
                                        </image>
                                     </ImageView>
+                                    <Text lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredienser" wrappingWidth="644.04296875">
+                                       <font>
+                                          <Font name="Trebuchet MS" size="20.0" />
+                                       </font>
+                                    </Text>
                                     <Text fx:id="ingredients" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients" wrappingWidth="644.04296875" />
+                                    <Text lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gör så här:" wrappingWidth="644.04296875">
+                                       <font>
+                                          <Font name="Trebuchet MS" size="20.0" />
+                                       </font>
+                                    </Text>
                                     <Text fx:id="instructions" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions" wrappingWidth="678.04296875" />
                                  </children>
                                  <padding>

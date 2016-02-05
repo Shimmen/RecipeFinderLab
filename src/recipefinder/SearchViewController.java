@@ -44,7 +44,7 @@ public class SearchViewController implements Initializable {
 
         if (mainIngredientChoiceBox != null) {
             mainIngredientChoiceBox.setItems(FXCollections.observableArrayList(
-                    "Alla ingredienser", "Kött", "Fisk", "Kykling", "Vegetarisk"
+                    "Alla ingredienser", "Kött", "Fisk", "Kyckling", "Vegetarisk"
             ));
             mainIngredientChoiceBox.setValue("Alla ingredienser");
         }
