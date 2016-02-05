@@ -1,7 +1,6 @@
 package recipefinder;
 
 import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +16,6 @@ import se.chalmers.ait.dat215.lab2.Recipe;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -68,48 +66,52 @@ public class ResultViewController implements Initializable {
 
         // On new recipe selected
         resultList.getSelectionModel().selectedItemProperty().addListener((observable, prevSelectedRecipe, selectedRecipe) -> {
-            if (selectedRecipe == null) {
-                return;
-            }
-
-            // Scroll to top of detail view
-            recipeScrollPane.setVvalue(0.0);
-
-            // Set recipe detail view properties
-
-            recipeName.setText(selectedRecipe.getName());
-
-            int minutes = selectedRecipe.getTime() % 60;
-            int hours = selectedRecipe.getTime() / 60;
-            String timeText = "";
-            if (hours != 0) {
-                timeText += hours + " timma" + (hours != 1 ? "r" : "");
-            }
-            if (minutes != 0) {
-                if (!timeText.isEmpty()) {
-                    timeText += " och ";
-                }
-                timeText += minutes + " minut" + (minutes != 1 ? "er": "");
-            }
-            timeRequired.setText(timeText);
-
-            difficulty.setText(selectedRecipe.getDifficulty());
-            price.setText(String.valueOf(selectedRecipe.getPrice()) + " kr/portion");
-
-            int numServings = selectedRecipe.getServings();
-            servings.setText(String.valueOf(numServings) + " portion" + (numServings == 1 ? "" : "er"));
-
-            description.setText(selectedRecipe.getDescription());
-            image.setImage(selectedRecipe.getFXImage());
-
-            String ingredientsString = selectedRecipe.getIngredients().stream()
-                    .map(this::ingredientString)
-                    .reduce("", (s, s2) -> s.isEmpty() ? s2 : s + "\n" + s2);
-            ingredients.setText(ingredientsString);
-            ingredients.setY(description.getLayoutBounds().getHeight() + 14.0 + 130.0);
-
-            instructions.setText(selectedRecipe.getInstruction());
+            onRecipeSelected(selectedRecipe);
         });
+    }
+
+    private void onRecipeSelected(Recipe selectedRecipe) {
+        if (selectedRecipe == null) {
+            return;
+        }
+
+        // Scroll to top of detail view
+        recipeScrollPane.setVvalue(0.0);
+
+        // Set recipe detail view properties
+
+        recipeName.setText(selectedRecipe.getName());
+
+        int minutes = selectedRecipe.getTime() % 60;
+        int hours = selectedRecipe.getTime() / 60;
+        String timeText = "";
+        if (hours != 0) {
+            timeText += hours + " timma" + (hours != 1 ? "r" : "");
+        }
+        if (minutes != 0) {
+            if (!timeText.isEmpty()) {
+                timeText += " och ";
+            }
+            timeText += minutes + " minut" + (minutes != 1 ? "er": "");
+        }
+        timeRequired.setText(timeText);
+
+        difficulty.setText(selectedRecipe.getDifficulty());
+        price.setText(String.valueOf(selectedRecipe.getPrice()) + " kr/portion");
+
+        int numServings = selectedRecipe.getServings();
+        servings.setText(String.valueOf(numServings) + " portion" + (numServings == 1 ? "" : "er"));
+
+        description.setText(selectedRecipe.getDescription());
+        image.setImage(selectedRecipe.getFXImage());
+
+        String ingredientsString = selectedRecipe.getIngredients().stream()
+                .map(this::ingredientString)
+                .reduce("", (s, s2) -> s.isEmpty() ? s2 : s + "\n" + s2);
+        ingredients.setText(ingredientsString);
+        ingredients.setY(description.getLayoutBounds().getHeight() + 14.0 + 130.0);
+
+        instructions.setText(selectedRecipe.getInstruction());
     }
 
     private String ingredientString(Ingredient ingredient) {
@@ -123,6 +125,7 @@ public class ResultViewController implements Initializable {
 
         resultList.setItems(FXCollections.observableArrayList(filteredRecipes));
         resultList.getSelectionModel().selectFirst();
+        onRecipeSelected(filteredRecipes.get(0));
         resultList.setCellFactory(RecipeCell::new);
     }
 
